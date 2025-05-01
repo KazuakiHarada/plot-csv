@@ -3,6 +3,6 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import "./assets/main.css";
 
-const pinia = createPinia();
-
-createApp(App).use(pinia).mount("#app");
+const app = createApp(App);
+app.use(createPinia());
+app.mount("#app");

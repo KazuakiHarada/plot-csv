@@ -5,3 +5,9 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+declare module "splitpanes" {
+  import { Plugin } from "vue";
+  export const Spilitpanes: Plugin;
+  export const Pane: Plugin;
+}
