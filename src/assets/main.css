@@ -15,6 +15,15 @@
   -webkit-text-size-adjust: 100%;
 }
 
+:root {
+  --color-primary: #396cd8;
+  --color-primary-hover: #2a5bb8;
+  --color-primary-active: #1e4a8c;
+
+  --color-background-soft: #f6f6f6;
+  
+}
+
 a {
   font-weight: 500;
   color: #646cff;

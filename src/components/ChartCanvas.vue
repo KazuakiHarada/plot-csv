@@ -1,5 +1,7 @@
 <template>
-  <canvas ref="chartCanvas"></canvas>
+  <div class="chart-container">
+    <canvas ref="chartCanvas"></canvas>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +22,8 @@ function renderChart() {
     .map((key) => ({
       label: key,
       data: store.series[key],
+      borderColor: store.colors[key],
+      backgroundColor: store.colors[key] + '33', // 20% opacity
       borderWidth: 2,
     }));
 
@@ -31,6 +35,9 @@ function renderChart() {
     },
     options: {
       responsive: true,
+      layout:{
+        padding: 0,
+      }
     },
   });
 }
@@ -38,3 +45,10 @@ function renderChart() {
 onMounted(renderChart);
 watch(() => store.visibility, renderChart, { deep: true });
 </script>
+
+<style scoped>
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+</style>
