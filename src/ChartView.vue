@@ -1,28 +1,18 @@
 <template>
   <div id="ViewChart">
-    <Splitpanes class ="default-theme" vertical style="height: 84vh;">
-      <Pane size="85">
-        <div class="canvas"><ChartCanvas /></div>
-      </Pane>
-      <Pane size="15">
-        <div class="controls"> <ChartContorls /></div>
-      </Pane>
-    </Splitpanes>
+    <div class="canvas"><ChartCanvas /></div>
+    <div class="controls"> <ChartContorls /></div>
   </div>
 </template>
 
 <script>
 import ChartCanvas from './components/ChartCanvas.vue';
 import ChartContorls from './components/ChartContorls.vue';
-import { Splitpanes, Pane } from 'splitpanes'
-import 'splitpanes/dist/splitpanes.css'
 export default {
   name: "ViewChart",
   components: {
     ChartCanvas,
-    ChartContorls,
-    Splitpanes,
-    Pane
+    ChartContorls
   }
 };
 </script>
@@ -38,14 +28,11 @@ export default {
   justify-content: center;
 }
 .canvas {
-  width: 100%;
+  width: 88%;
   height: 100%;
 }
 .controls {
-  width: 100%;
+  width: 12%;
   height: 100%;
-}
-.splitpanes {
-  background: #f0f0f0;
 }
 </style>
