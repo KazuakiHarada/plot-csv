@@ -14,7 +14,8 @@
       {
         "title": "plot-csv",
         "width": 1280,
-        "height": 720
+        "height": 720,
+        "resizable": true
       }
     ],
     "security": {

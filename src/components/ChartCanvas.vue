@@ -49,6 +49,7 @@ watch(() => store.visibility, renderChart, { deep: true });
 <style scoped>
 .chart-container {
   position: relative;
-  width: 100%;
+  margin: 20px;
+  border-radius: 8px;
 }
 </style>
