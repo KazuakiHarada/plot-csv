@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useCsvStore = defineStore('csv', {
   state: () => ({
-    labels: [] as string[],
+    csvName: '' as string,
+    xKey: '' as string,
     series: {} as Record<string, number[]>,
     visibility: {} as Record<string, boolean>,
     colors: {} as Record<string, string>,
@@ -15,17 +16,24 @@ export const useCsvStore = defineStore('csv', {
     colorIndex: 0,
   }),
   actions: {
-    setData(labels: string[], series: Record<string, (number | null)[]>) {
-      this.labels = labels;
+    setData(name: string, series: Record<string, (number | null)[]>) {
+      this.csvName = name;
+      this.xKey = '';
       this.series = {};
       this.visibility = {};
       this.colors = {};
       this.colorIndex = 0;
       for (const key in series) {
+        if (this.xKey == '') {
+          this.xKey = key;
+        }
         this.series[key] = series[key].filter((v): v is number => v !== null);
         this.visibility[key] = true;
         this.colors[key] = this.getNextColor();
       }
+    },
+    setX(label: string) {
+      this.xKey = label;
     },
     toggleVisibility(key: string) {
       this.visibility[key] = !this.visibility[key];

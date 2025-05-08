@@ -13,9 +13,11 @@ const store = useCsvStore();
 const chartCanvas = ref<HTMLCanvasElement | null>(null);
 let chart: Chart | null = null;
 
-function renderChart() {
+function renderLineChart() {
   if (!chartCanvas.value) return;
   if (chart) chart.destroy();
+
+  const labels = Array.from({ length: store.series[Object.keys(store.series)[0]].length }, (_, i) => i + 1);
 
   const datasets = Object.keys(store.series)
     .filter((key) => store.visibility[key])
@@ -30,7 +32,7 @@ function renderChart() {
   chart = new Chart(chartCanvas.value, {
     type: 'line',
     data: {
-      labels: store.labels,
+      labels,
       datasets,
     },
     options: {
@@ -41,6 +43,60 @@ function renderChart() {
     },
   });
 }
+
+function renderScatterChart() {
+  if (!chartCanvas.value) return;
+  if (chart) chart.destroy();
+
+  const xKey = store.xKey;
+  if (xKey === null) return;
+
+  const datasets = Object.keys(store.series)
+    .filter((key) => store.visibility[key])
+    .map((key) => ({
+      label: key,
+      data: store.series[key].map((y, i) => ({
+        x: store.series[store.xKey][i],
+        y,
+      })),
+      borderColor: store.colors[key],
+      backgroundColor: store.colors[key] + '33', // 20% opacity
+    }));
+
+  chart = new Chart(chartCanvas.value, {
+    type: 'scatter',
+    data: {
+      datasets,
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          type: 'linear',
+          title: {
+            display: true,
+            text: store.xKey,
+          },
+        },
+        y: {
+          title: {
+            display: false,
+            text: 'Value',
+          },
+        },
+      },
+    },
+  });
+}
+
+function renderChart() {
+  if (store.xKey === null) {
+    renderLineChart();
+  } else {
+    renderScatterChart();
+  }
+}
+
 
 onMounted(renderChart);
 watch(() => store.visibility, renderChart, { deep: true });

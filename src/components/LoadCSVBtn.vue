@@ -16,6 +16,6 @@ async function loadCSV() {
     return;
   }
   const parsed = parseCSV(csv);
-  store.setData(parsed.labels, parsed.series);
+  store.setData('csv', parsed.series);
 }
 </script>
