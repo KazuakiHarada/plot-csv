@@ -10,7 +10,7 @@
       <label>Y Axis</label>
       <div class="item-container">
         <div v-for="(enabled, key) in store.visibility" :key="key">
-          <div class="item">
+          <div v-show="key !== store.xKey" class="item">
             <div></div>
             <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />
             <p class="item-label">{{ key }}</p>
@@ -61,10 +61,8 @@ const handleSelect = (option: string) => {
 }
 
 .item-container {
-  gap: 1rem;
   width: 100%;
   display: grid;
-  gap: 1rem;
 }
 
 .item {
@@ -75,6 +73,7 @@ const handleSelect = (option: string) => {
   grid-template-columns: 8px 20px 1fr 10px;
   grid-auto-rows: 60px;
   padding: 0.5rem;
+  margin-bottom: 1rem;
   border-radius: 12px;
   box-sizing: border-box;
   background-color: var(--color-background-second);

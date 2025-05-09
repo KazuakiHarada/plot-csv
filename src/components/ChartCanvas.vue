@@ -52,7 +52,7 @@ function renderScatterChart() {
   if (xKey === null) return;
 
   const datasets = Object.keys(store.series)
-    .filter((key) => store.visibility[key])
+    .filter((key) => store.visibility[key] && key !== xKey)
     .map((key) => ({
       label: key,
       data: store.series[key].map((y, i) => ({
