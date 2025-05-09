@@ -19,3 +19,20 @@ async function loadCSV() {
   store.setData('csv', parsed.series);
 }
 </script>
+
+<style scoped>
+button {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #D0E0F0 ;
+  transition: background-color 0.3s;
+}
+button:active {
+  background-color: #004085;
+}
+
+</style>

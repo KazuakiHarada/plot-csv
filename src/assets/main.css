@@ -5,9 +5,6 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,29 +18,11 @@
   padding: 0;
 }
 
-:root {
-  --color-primary: #396cd8;
-  --color-primary-hover: #2a5bb8;
-  --color-primary-active: #1e4a8c;
-
-  --color-background-soft: #f6f6f6;
-  
-}
-
 body {
   min-height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-background-second);
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 
 input,
 button {
@@ -62,33 +41,55 @@ button {
 button {
   cursor: pointer;
 }
-
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
 input,
 button {
   outline: none;
+  box-shadow: none;
 }
 
-#greet-input {
-  margin-right: 5px;
+/* color value*/
+:root {
+  --vt-color-white-0: #FFF;
+  --vt-color-white-1: #f5f5f5;
+  --vt-color-white-2: #E6E6E6;
+  --vt-color-white-3: #D9D9D9;
+  --vt-color-white-4: #BFBFBF;
+
+  --vt-color-black-0: #000;
+  --vt-color-black-1: #0f0f0f;
+  --vt-color-black-1-h: #0f0f0f96;
+  --vt-color-black-2: #1a1a1a;
+  --vt-color-black-2-h: #1a1a1a96;
+}
+
+:root {
+  --color-background: var(--vt-color-white-0);
+  --color-background-hover: var(--vt-color-white-1);
+  --color-background-second: var(--vt-color-white-1);
+  --color-background-second-hover: var(--vt-color-white-2);
+
+  --color-border: var(--vt-color-white-3);
+
+  --color-text: #1e1e1e;
+}
+
+:root {
+  --color-primary: #396cd8;
+  --color-primary-hover: #2a5bb8;
+  --color-primary-active: #1e4a8c;  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
+      --color-backgroud: #1a1a1a;
+      --color-background-hover: var(--vt-color-black-1-h);
+      --color-background-second: var(--vt-color-black-2);
+      --color-background-second-hover: var(--vt-color-white-2);
 
-  a:hover {
-    color: #24c8db;
-  }
+      --color-border: var(--vt-color-black-2);
+
+      --color-text: var(--vt-color-white-0);
+    }
 
   input,
   button {

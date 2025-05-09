@@ -2,7 +2,7 @@
   <div id="ViewChart">
     <div class="main-area">
       <div class="header">
-        <h1>Chart</h1>
+        <h1>CSV Scatter</h1>
         <LoadCSVBtn /> 
       </div>
       <ChartCanvas />
@@ -30,13 +30,8 @@ export default {
 #ViewChart {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 250px;
+  grid-template-columns: 1fr 260px;
   height: 100%;
-}
-.moin-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 .header {
   display: flex;
@@ -44,10 +39,10 @@ export default {
   justify-content: flex-start;
   gap: 1rem;
   margin-top: 0%;
-  padding: 10px;
+  padding: 20px;
 }
 .header h1 {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .controls {

@@ -1,9 +1,9 @@
 <template>
   <div class="dropdown">
     <button class="dropdown-toggle" @click="toggleDropdown">
-      {{ selected }}
       <span v-if = "isOpen" class="arrow">▼</span>
-      <span v-else class="arrow">side</span>
+      <span v-else class="arrow">▶</span>
+      <label>{{ selected }}</label>
     </button>
 
     <transition name="fade-slide">
@@ -31,14 +31,17 @@ const props = defineProps({
   },
   defaultValue: {
     type: String,
-    required: true,
+    required: false,
   }
 })
 
 const emit = defineEmits(['update'])
 
 const isOpen = ref(false)
-const selected = ref(props.defaultValue)
+const selected = ref(props.options[0])
+if (props.defaultValue) {
+  selected.value = props.defaultValue
+}
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
@@ -55,24 +58,39 @@ const select = (option) => {
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 200px;
+  min-width: 160px;
+  width: 100%;
   font-family: sans-serif;
 }
 
 .dropdown-toggle {
+  display: grid;
+  align-items: center;
   width: 100%;
-  padding: 8px 12px;
-  font-size: 14px;
-  color: #333;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: left;
-  cursor: pointer;
+  grid-template-columns: 30px 1fr 15px;
+  grid-auto-rows: 60px;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: var(--color-background-second);
+}
+
+.dropdown-toggle:hover {
+  background-color: #f0f0f0;
+}
+.dropdown-toggle:active {
+  background-color: #e0e0e0;
 }
 
 .arrow {
   float: right;
+  font-size: 1rem;
+  text-align: center;
+  color: var(--color-text);
+}
+.dropdown-toggle label {
+  text-align: left;
+  font-size: 1.2rem;
+  margin-left: 10px;
 }
 
 .dropdown-menu {
@@ -83,16 +101,14 @@ const select = (option) => {
   margin-top: 4px;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 12px;
   list-style: none;
   padding: 4px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   z-index: 100;
 }
 
 .dropdown-item {
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 12px;
   color: #333;
   cursor: pointer;
 }

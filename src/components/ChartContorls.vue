@@ -2,15 +2,19 @@
   <div class="chart-control">
     <h2>Chart</h2>
 
-    <div v-if="store.xKey">
+    <div v-show="store.xKey" class="axis-container">
       <label>X Axis</label>
-      <Dropdown :options="Object.keys(store.visibility)" default-value="store.xKey" @update="handleSelect" />
+      <Dropdown :options="Object.keys(store.visibility)" @update="handleSelect" />
     </div>
-    <div class="item-container">
-      <div v-for="(enabled, key) in store.visibility" :key="key">
-        <div class="item">
-          <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />
-          <p class="item-label">{{ key }}</p>
+    <div class="axis-container">
+      <label>Y Axis</label>
+      <div class="item-container">
+        <div v-for="(enabled, key) in store.visibility" :key="key">
+          <div class="item">
+            <div></div>
+            <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />
+            <p class="item-label">{{ key }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -31,50 +35,55 @@ const handleSelect = (option: string) => {
 
 <style scoped>
 .chart-control {
-  padding: 30px;
+  padding: 30px 35px;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  border-left: 1px solid var(--color-border);
+  background-color: var(--color-background);
 }
 .chart-control h2 {
   font-size: 1.5rem;
-  padding: 1rem 0;
   margin-bottom: 1rem;
+  padding: 1rem 0;
   text-align: left;
-  color: #333;
+}
+
+.chart-control .axis-container {
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
 .chart-control label {
-  font-size: 1rem;
-  padding: 0.5rem 0;
+  font-size: 18px;
+  margin: 0.8rem 0;
   text-align: left;
-  color: #333;
   font-weight: 500;
 }
 
 .item-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 1rem;
   width: 100%;
+  display: grid;
+  gap: 1rem;
 }
 
 .item {
   display: grid;
   align-items: center;
-  justify-items: center;
   width: 100%;
-  grid-template-columns: 30px 1fr;
+  grid-column: 1 / -1;
+  grid-template-columns: 8px 20px 1fr 10px;
   grid-auto-rows: 60px;
   padding: 0.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background-color: var(--color-background-second);
 }
 
 .item-label {
   font-size: 1.2rem;
-  margin-left: 10px;
+  margin-left: 12px;
   text-align: left;
+  width: 100%;
 }
 </style>
