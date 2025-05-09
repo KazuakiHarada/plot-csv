@@ -1,17 +1,36 @@
-// frontend/src/utils/file.ts
-import { open } from '@tauri-apps/plugin-dialog';
-import { readTextFile } from '@tauri-apps/plugin-fs';
-
 export async function pickAndReadCSV(): Promise<string | null> {
-  const filePath = await open({
-    filters: [{ name: 'CSV', extensions: ['csv'] }],
-    multiple: false,
-  });
+  try {
+    // Tauriでファイルを開く（優先）
+    const { open } = await import('@tauri-apps/plugin-dialog');
+    const { readTextFile } = await import('@tauri-apps/plugin-fs');
 
-  if (typeof filePath === 'string') {
-    const contents = await readTextFile(filePath);
-    return contents;
+    const filePath = await open({
+      filters: [{ name: 'CSV', extensions: ['csv'] }],
+      multiple: false,
+    });
+
+    if (typeof filePath === 'string') {
+      const contents = await readTextFile(filePath);
+      return contents;
+    }
+  } catch (e) {
+    console.warn('Tauri API が使えないため、ブラウザのファイル入力にフォールバックします。', e);
   }
 
-  return null;
+  // ブラウザのファイル入力にフォールバック
+  return new Promise((resolve) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.csv';
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        const text = await file.text();
+        resolve(text);
+      } else {
+        resolve(null);
+      }
+    };
+    input.click();
+  });
 }
