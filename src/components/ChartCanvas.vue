@@ -99,7 +99,7 @@ function renderChart() {
 
 
 onMounted(renderChart);
-watch(() => store.visibility, renderChart, { deep: true });
+watch(() => store, renderChart, { deep: true });
 </script>
 
 <style scoped>
