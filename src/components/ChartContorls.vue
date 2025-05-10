@@ -3,11 +3,11 @@
     <h2>Chart</h2>
 
     <div v-show="store.xKey" class="axis-container">
-      <label>X Axis</label>
-      <Dropdown :options="Object.keys(store.visibility)" @update="handleSelect" />
+      <p class="axis-label">X Axis</p>
+      <Dropdown :options="Object.keys(store.visibility)" :defaultValue="store.xKey" @update="handleSelect" />
     </div>
     <div class="axis-container">
-      <label>Y Axis</label>
+      <p class="axis-label">Y Axis</p>
       <div class="item-container">
         <div v-for="(enabled, key) in store.visibility" :key="key">
           <div v-show="key !== store.xKey" class="item">
@@ -53,9 +53,9 @@ const handleSelect = (option: string) => {
   margin-top: 1.5rem;
 }
 
-.chart-control label {
+.chart-control .axis-label {
   font-size: 18px;
-  margin: 0.8rem 0;
+  margin: 0.5rem 0;
   text-align: left;
   font-weight: 500;
 }
@@ -76,7 +76,9 @@ const handleSelect = (option: string) => {
   margin-bottom: 1rem;
   border-radius: 12px;
   box-sizing: border-box;
-  background-color: var(--color-background-second);
+  background-color: var(--color-background-button);
+  outline: 1px solid var(--color-border-button);
+  outline-offset: -1px;
 }
 
 .item-label {

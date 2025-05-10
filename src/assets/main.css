@@ -54,12 +54,16 @@ button {
   --vt-color-white-2: #E6E6E6;
   --vt-color-white-3: #D9D9D9;
   --vt-color-white-4: #BFBFBF;
+  --vt-color-white-5: #A6A6A6;
 
   --vt-color-black-0: #000;
   --vt-color-black-1: #0f0f0f;
   --vt-color-black-1-h: #0f0f0f96;
   --vt-color-black-2: #1a1a1a;
   --vt-color-black-2-h: #1a1a1a96;
+  --vt-color-black-3: #262626;
+  --vt-color-black-4: #333;
+  --vt-color-black-5: #404040;
 }
 
 :root {
@@ -68,9 +72,14 @@ button {
   --color-background-second: var(--vt-color-white-1);
   --color-background-second-hover: var(--vt-color-white-2);
 
-  --color-border: var(--vt-color-white-3);
+  --color-background-button: var(--vt-color-white-1);
+  --color-background-button-hover: var(--vt-color-white-2);
 
-  --color-text: #1e1e1e;
+  --color-border: var(--vt-color-white-3);
+  --color-border-button: transparent;
+
+  --color-text: var(--vt-color-black-2);
+  --color-text-light: var(--vt-color-black-4);
 }
 
 :root {
@@ -81,22 +90,18 @@ button {
 
 @media (prefers-color-scheme: dark) {
   :root {
-      --color-backgroud: #1a1a1a;
+      --color-background: var(--vt-color-black-3);
       --color-background-hover: var(--vt-color-black-1-h);
-      --color-background-second: var(--vt-color-black-2);
+      --color-background-second: var(--vt-color-black-0);
       --color-background-second-hover: var(--vt-color-white-2);
 
-      --color-border: var(--vt-color-black-2);
+      --color-border: var(--vt-color-black-3);
+      --color-border-button: #cccccc80;
 
-      --color-text: var(--vt-color-white-0);
+      --color-background-button: var(--vt-color-black-3);
+      --color-background-button-hover: var(--vt-color-black-4);
+
+      --color-text: var(--vt-color-white-1);
+      --color-text-light: var(--vt-color-white-4);
     }
-
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
 }

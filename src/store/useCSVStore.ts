@@ -8,10 +8,11 @@ export const useCsvStore = defineStore('csv', {
     visibility: {} as Record<string, boolean>,
     colors: {} as Record<string, string>,
     colorPalette: [
-      '#ff6384',
-      '#36a2eb',
-      '#cc65fe',
-      '##ffce56',
+      '#ff6183',
+      '#37a3eb',
+      '#cd69ff',
+      '#ffa142',
+      '#4cc0c8'
     ],
     colorIndex: 0,
   }),

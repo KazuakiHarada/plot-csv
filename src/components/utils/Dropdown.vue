@@ -31,16 +31,17 @@ const props = defineProps({
   },
   defaultValue: {
     type: String,
-    required: false,
+    required: true,
   }
 })
 
 const emit = defineEmits(['update'])
 
 const isOpen = ref(false)
-const selected = ref(props.options[0])
+const selected = ref(props.defaultValue)
 if (props.defaultValue) {
   selected.value = props.defaultValue
+  console.log(selected.value)
 }
 
 const toggleDropdown = () => {
@@ -71,21 +72,21 @@ const select = (option) => {
   grid-auto-rows: 60px;
   padding: 0.5rem;
   border-radius: 12px;
-  background-color: var(--color-background-second);
+  color: var(--color-text);
+  background-color: var(--color-background-button);
+  outline: 1px solid var(--color-border-button);
+  outline-offset: -1px;
 }
 
 .dropdown-toggle:hover {
-  background-color: #f0f0f0;
-}
-.dropdown-toggle:active {
-  background-color: #e0e0e0;
+  background-color: var(--color-background-button-hover); 
 }
 
 .arrow {
   float: right;
   font-size: 1rem;
   text-align: center;
-  color: var(--color-text);
+  color: var(--color-text-light);
 }
 .dropdown-toggle label {
   text-align: left;

@@ -23,12 +23,14 @@ async function loadCSV() {
 <style scoped>
 button {
   padding: 10px 20px;
+  color: var(--color-text);
+  background-color: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: 5px;
   cursor: pointer;
 }
 button:hover {
-  background-color: #D0E0F0 ;
+  background-color: var(--color-background-second);
   transition: background-color 0.3s;
 }
 button:active {
