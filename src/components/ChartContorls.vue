@@ -9,7 +9,7 @@
     <div class="axis-container">
       <p class="axis-label">Y Axis</p>
       <div class="item-container">
-        <div v-for="(enabled, key) in store.visibility" :key="key">
+        <div v-for="(_, key) in store.visibility" :key="key">
           <div v-show="key !== store.xKey" class="item">
             <div></div>
             <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />

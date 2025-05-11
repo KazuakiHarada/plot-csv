@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "plot-csv",
+  "productName": "easy-csv-scatter",
   "version": "0.1.0",
-  "identifier": "com.plot-csv.app",
+  "identifier": "com.east-csv-scatter.app",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "plot-csv",
+        "title": "Easy CSV Scatter",
         "width": 1280,
         "height": 720,
         "resizable": true

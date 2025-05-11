@@ -2,7 +2,7 @@
   <div id="ViewChart">
     <div class="main-area">
       <div class="header">
-        <h1>CSV Scatter</h1>
+        <h1>Easy CSV Scatter</h1>
         <LoadCSVBtn /> 
       </div>
       <ChartCanvas />
