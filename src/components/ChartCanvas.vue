@@ -70,21 +70,38 @@ function renderScatterChart() {
     },
     options: {
       responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
       scales: {
         x: {
           type: 'linear',
           title: {
             display: true,
             text: store.xKey,
+            font: {
+              size: 17,
+            },
           },
         },
         y: {
           title: {
-            display: false,
-            text: 'Value',
+            display: true,
+            text: Object.keys(store.series)
+              .filter((key) => store.visibility[key] && key !== store.xKey)
+              .join(',  '),
+            font: {
+              size: 17,
+            },
           },
         },
       },
+      layout: {
+        padding: 12,
+      },
+      maintainAspectRatio	: false,
     },
   });
 }
@@ -97,7 +114,6 @@ function renderChart() {
   }
 }
 
-
 onMounted(renderChart);
 watch(() => store, renderChart, { deep: true });
 </script>
@@ -105,7 +121,8 @@ watch(() => store, renderChart, { deep: true });
 <style scoped>
 .chart-container {
   position: relative;
+  height: 80vh;
+  width: 95%;
   margin: 20px;
-  border-radius: 8px;
 }
 </style>

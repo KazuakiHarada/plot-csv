@@ -42,7 +42,9 @@ export default {
   padding: 20px;
 }
 .header h1 {
-  margin-left: 5px;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 8px;
 }
 
 .controls {

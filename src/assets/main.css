@@ -64,6 +64,7 @@ button {
   --vt-color-black-3: #262626;
   --vt-color-black-4: #333;
   --vt-color-black-5: #404040;
+  --vt-color-black-6: #4d4d4d;
 }
 
 :root {
@@ -78,8 +79,8 @@ button {
   --color-border: var(--vt-color-white-3);
   --color-border-button: transparent;
 
-  --color-text: var(--vt-color-black-2);
-  --color-text-light: var(--vt-color-black-4);
+  --color-text: var(--vt-color-black-4);
+  --color-text-light: var(--vt-color-black-5);
 }
 
 :root {
@@ -101,7 +102,7 @@ button {
       --color-background-button: var(--vt-color-black-3);
       --color-background-button-hover: var(--vt-color-black-4);
 
-      --color-text: var(--vt-color-white-1);
+      --color-text: var(--vt-color-white-2);
       --color-text-light: var(--vt-color-white-4);
     }
 }
