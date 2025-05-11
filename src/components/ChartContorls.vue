@@ -61,8 +61,9 @@ const handleSelect = (option: string) => {
 }
 
 .item-container {
+  max-height: 60vh;
+  overflow: auto;
   width: 100%;
-  display: grid;
 }
 
 .item {

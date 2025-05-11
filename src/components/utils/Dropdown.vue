@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
 
 const props = defineProps({
   options: {
@@ -39,10 +39,9 @@ const emit = defineEmits(['update'])
 
 const isOpen = ref(false)
 const selected = ref(props.defaultValue)
-if (props.defaultValue) {
-  selected.value = props.defaultValue
-  console.log(selected.value)
-}
+watch(() => props.defaultValue, (newValue) => {
+  selected.value = newValue
+})
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
@@ -99,6 +98,8 @@ const select = (option) => {
   top: 100%;
   left: 0;
   width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
   margin-top: 4px;
   background-color: white;
   border: 1px solid #ccc;

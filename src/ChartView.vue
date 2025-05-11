@@ -46,6 +46,9 @@ export default {
 }
 
 .controls {
+  position: fixed;
+  right: 0%;
+  width: 260px;
   height: 100%;
 }
 </style>
