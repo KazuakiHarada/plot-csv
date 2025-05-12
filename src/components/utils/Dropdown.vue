@@ -3,7 +3,7 @@
     <button class="dropdown-toggle" @click="toggleDropdown">
       <span v-if = "isOpen" class="arrow">▼</span>
       <span v-else class="arrow">▶</span>
-      <label>{{ selected }}</label>
+      <label :style="CalcitemFontSize(selected)">{{ selected }}</label>
     </button>
 
     <transition name="fade-slide">
@@ -21,12 +21,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref,watch } from 'vue'
 
 const props = defineProps({
   options: {
-    type: Array,
+    type: Array as () => string[],
     required: true,
   },
   defaultValue: {
@@ -43,11 +43,22 @@ watch(() => props.defaultValue, (newValue) => {
   selected.value = newValue
 })
 
+const CalcitemFontSize = (key: string) => {
+  const length = key.length;
+  if (length > 30) {
+    return { fontSize: '0.8rem' };
+  } else if (length > 10) {
+    return { fontSize: '1rem' };
+  } else {
+    return { fontSize: '1.2rem' };
+  }
+};
+
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
 }
 
-const select = (option) => {
+const select = (option: string) => {
   selected.value = option
   emit('update', option)
   isOpen.value = false
@@ -90,7 +101,8 @@ const select = (option) => {
 .dropdown-toggle label {
   text-align: left;
   font-size: 1.2rem;
-  margin-left: 10px;
+  margin-left: 8px;
+  overflow-wrap: anywhere;
 }
 
 .dropdown-menu {

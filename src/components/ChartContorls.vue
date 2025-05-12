@@ -13,7 +13,7 @@
           <div v-show="key !== store.xKey" class="item">
             <div></div>
             <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />
-            <p class="item-label">{{ key }}</p>
+            <p class="item-label" :style="CalcitemFontSize(key)">{{ key }}</p>
           </div>
         </div>
       </div>
@@ -26,6 +26,17 @@ import { useCsvStore } from '../store/useCSVStore';
 import checkBox from './utils/checkBox.vue';
 import Dropdown from './utils/Dropdown.vue';
 const store = useCsvStore();
+
+const CalcitemFontSize = (key: string) => {
+  const length = key.length;
+  if (length > 30) {
+    return { fontSize: '0.8rem' };
+  } else if (length > 10) {
+    return { fontSize: '1rem' };
+  } else {
+    return { fontSize: '1.2rem' };
+  }
+};
 
 const handleSelect = (option: string) => {
   console.log('Selected option:', option);
@@ -83,9 +94,9 @@ const handleSelect = (option: string) => {
 }
 
 .item-label {
-  font-size: 1.2rem;
   margin-left: 12px;
   text-align: left;
+  overflow-wrap: anywhere;
   width: 100%;
 }
 </style>
