@@ -17,6 +17,18 @@ export const useCsvStore = defineStore('csv', {
     colorIndex: 0,
   }),
   actions: {
+    async loadCSV() {
+      const { pickAndReadCSV } = await import('../utils/load-file');
+      const { parseCSV } = await import('../utils/parser');
+      const csv = await pickAndReadCSV();
+      if (!csv) {
+        alert('CSVファイルを選択してください');
+        return;
+      }
+      const { name, contents } = csv;
+      const parsed = parseCSV(contents);
+      this.setData(name, parsed.series);
+    },
     setData(name: string, series: Record<string, (number | null)[]>) {
       this.csvName = name;
       this.xKey = '';
