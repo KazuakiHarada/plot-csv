@@ -13,38 +13,8 @@ const store = useCsvStore();
 const chartCanvas = ref<HTMLCanvasElement | null>(null);
 let chart: Chart | null = null;
 
-function renderLineChart() {
-  if (!chartCanvas.value) return;
-  if (chart) chart.destroy();
 
-  const labels = Array.from({ length: store.series[Object.keys(store.series)[0]].length }, (_, i) => i + 1);
-
-  const datasets = Object.keys(store.series)
-    .filter((key) => store.visibility[key])
-    .map((key) => ({
-      label: key,
-      data: store.series[key],
-      borderColor: store.colors[key],
-      backgroundColor: store.colors[key] + '33', // 20% opacity
-      borderWidth: 2,
-    }));
-
-  chart = new Chart(chartCanvas.value, {
-    type: 'line',
-    data: {
-      labels,
-      datasets,
-    },
-    options: {
-      responsive: true,
-      layout:{
-        padding: 0,
-      }
-    },
-  });
-}
-
-function renderScatterChart() {
+function renderChart() {
   if (!chartCanvas.value) return;
   if (chart) chart.destroy();
 
@@ -64,7 +34,7 @@ function renderScatterChart() {
     }));
 
   chart = new Chart(chartCanvas.value, {
-    type: 'scatter',
+    type: store.xKey == 'time' ? 'line' : 'scatter',
     data: {
       datasets,
     },
@@ -104,14 +74,6 @@ function renderScatterChart() {
       maintainAspectRatio	: false,
     },
   });
-}
-
-function renderChart() {
-  if (store.xKey === null) {
-    renderLineChart();
-  } else {
-    renderScatterChart();
-  }
 }
 
 onMounted(renderChart);

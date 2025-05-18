@@ -2,7 +2,7 @@
   <div class="chart-control">
     <h2>Chart</h2>
 
-    <div v-show="store.xKey" class="axis-container">
+    <div class="axis-container">
       <p class="axis-label">X Axis</p>
       <Dropdown :options="Object.keys(store.visibility)" :defaultValue="store.xKey" @update="handleSelect" />
     </div>
