@@ -83,7 +83,7 @@ watch(() => store, renderChart, { deep: true });
 <style scoped>
 .chart-container {
   position: relative;
-  height: 80vh;
+  height: calc(100vh - 40px);
   width: 95%;
   margin: 20px;
 }
