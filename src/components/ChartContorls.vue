@@ -17,20 +17,21 @@
     <div class="axis-container">
       <p class="axis-label">Y Axis</p>
       <div class="item-container">
-        <div v-for="(_, key) in store.visibility" :key="key">
-          <div v-show="key !== store.xKey" class="item">
-            <div></div>
-            <checkBox v-model="store.visibility[key]" :color="store.colors[key]" />
-            <p class="item-label" :style="CalcitemFontSize(key)">{{ key }}</p>
-          </div>
+        <YAxisItem
+          v-for="(_, key) in store.visibility"
+          :key="key"
+          v-model="store.visibility[key]"
+          :color="store.colors[key]"
+          :keyName="key"
+          :xKey="store.xKey"
+        />
+        <div v-show="!is_all_deselected" class="deselect-btn" @click="deselectAll">
+          <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <line x1="4" y1="4" x2="14" y2="14" stroke-width="2" stroke-linecap="round" />
+            <line x1="14" y1="4" x2="4" y2="14" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <p>全て非表示にする</p>
         </div>
-        <div class="deselect-btn" @click="deselectAll">
-        <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <line x1="4" y1="4" x2="14" y2="14" stroke-width="2" stroke-linecap="round" />
-          <line x1="14" y1="4" x2="4" y2="14" stroke-width="2" stroke-linecap="round" />
-        </svg>
-        <p>全て非表示にする</p>
-      </div>
       </div>
     </div>
   </div>
@@ -38,20 +39,16 @@
 
 <script setup lang="ts">
 import { useCsvStore } from '../store/useCSVStore';
-import checkBox from './utils/checkBox.vue';
 import Dropdown from './utils/Dropdown.vue';
+import YAxisItem from './contorl_detail/YAxisItem.vue';
+import { computed } from 'vue';
 const store = useCsvStore();
 
-const CalcitemFontSize = (key: string) => {
-  const length = key.length;
-  if (length > 30) {
-    return { fontSize: '0.8rem' };
-  } else if (length > 10) {
-    return { fontSize: '1rem' };
-  } else {
-    return { fontSize: '1.2rem' };
-  }
-};
+const is_all_deselected = computed(() => {
+  return Object.keys(store.visibility).every(
+    (key) => key === store.xKey || !store.visibility[key]
+  );
+});
 
 const handleSelect = (option: string) => {
   console.log('Selected option:', option);
@@ -98,12 +95,15 @@ const deselectAll = () => {
   padding: 4px;
   background-color: var(--color-background-button);
   color: var(--color-text-light);
+  border: 1px solid var(--color-border-button);
   border-radius: 16px;
   cursor: pointer;
 }
 
 .chart-control .change-btn:hover {
   color: var(--color-primary-hover);
+  background-color: var(--color-background-button-hover);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .change-tooltip {
@@ -144,29 +144,6 @@ const deselectAll = () => {
   width: 100%;
 }
 
-.item {
-  display: grid;
-  align-items: center;
-  width: 100%;
-  grid-column: 1 / -1;
-  grid-template-columns: 8px 20px 1fr 10px;
-  grid-auto-rows: 60px;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  box-sizing: border-box;
-  background-color: var(--color-background-button);
-  outline: 1px solid var(--color-border-button);
-  outline-offset: -1px;
-}
-
-.item-label {
-  margin-left: 12px;
-  text-align: left;
-  overflow-wrap: anywhere;
-  width: 100%;
-}
-
 .deselect-btn {
   display: flex;
   align-items: center;
@@ -183,6 +160,7 @@ const deselectAll = () => {
 }
 .deselect-btn:hover {
   color: var(--color-text);
-  background-color: var(--color-background-button);
+  background-color: var(--color-background-button-hover);
+  transition: background-color 0.2s, color 0.2s;
 }
 </style>

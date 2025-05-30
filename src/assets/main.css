@@ -50,11 +50,14 @@ button {
 /* color value*/
 :root {
   --vt-color-white-0: #FFF;
+  --vt-color-white-1-w: #fafafa;
   --vt-color-white-1: #f5f5f5;
   --vt-color-white-2: #E6E6E6;
   --vt-color-white-3: #D9D9D9;
   --vt-color-white-4: #BFBFBF;
   --vt-color-white-5: #A6A6A6;
+  --vt-color-white-6: #8C8C8C;
+
 
   --vt-color-black-0: #000;
   --vt-color-black-1: #0f0f0f;
@@ -65,6 +68,10 @@ button {
   --vt-color-black-4: #333;
   --vt-color-black-5: #404040;
   --vt-color-black-6: #4d4d4d;
+  --vt-color-black-7: #595959;
+  --vt-color-black-8: #666;
+  --vt-color-black-9: #737373;
+  --vt-color-black-10: #808080;
 }
 
 :root {
@@ -75,12 +82,14 @@ button {
 
   --color-background-button: var(--vt-color-white-1);
   --color-background-button-hover: var(--vt-color-white-2);
+  --color-background-button-disabled: var(--vt-color-white-1-w);
 
   --color-border: var(--vt-color-white-3);
   --color-border-button: transparent;
 
   --color-text: var(--vt-color-black-4);
   --color-text-light: var(--vt-color-black-6);
+  --color-text-disabled: var(--vt-color-white-5);
 }
 
 :root {
@@ -101,8 +110,10 @@ button {
 
       --color-background-button: var(--vt-color-black-3);
       --color-background-button-hover: var(--vt-color-black-4);
+      --color-background-button-disabled: var(--vt-color-black-2-h);
 
       --color-text: var(--vt-color-white-2);
       --color-text-light: var(--vt-color-white-4);
+      --color-text-disabled: var(--vt-color-black-10);
     }
 }
