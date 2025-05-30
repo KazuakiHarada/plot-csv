@@ -3,12 +3,12 @@
     <div class="csv-name-container">
       <h2>{{ store.csvName }}</h2>
       <button class="change-btn" @click="store.loadCSV">
-        <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 4 14 L 4 2 L 12 2  L 20 10 L 20 22 L 4 22" fill="none" stroke-width="2" />
-          <path d="M 0 17 L 10 17 L 7 14 " fill="none" stroke-width="2" />
+        <svg width="18" height="18" viewBox="0 0 17 17" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 4 8 L 9 4 L 14 8" fill="none" stroke-width="3" stroke-linecap="round" />
+          <line x1="9" y1="4" x2="9" y2="16" stroke-width="3" stroke-linecap="round" />
         </svg>
       </button>
-      <span class="change-tooltip">ファイルの変更</span>
+      <span class="change-tooltip">ファイルをアップロード</span>
     </div>
     <div class="axis-container">
       <p class="axis-label">X Axis</p>
@@ -24,6 +24,13 @@
             <p class="item-label" :style="CalcitemFontSize(key)">{{ key }}</p>
           </div>
         </div>
+        <div class="deselect-btn" @click="deselectAll">
+        <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="4" x2="14" y2="14" stroke-width="2" stroke-linecap="round" />
+          <line x1="14" y1="4" x2="4" y2="14" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <p>全て非表示にする</p>
+      </div>
       </div>
     </div>
   </div>
@@ -49,6 +56,14 @@ const CalcitemFontSize = (key: string) => {
 const handleSelect = (option: string) => {
   console.log('Selected option:', option);
   store.xKey = option;
+};
+
+const deselectAll = () => {
+  Object.keys(store.visibility).forEach((key) => {
+    if (key !== store.xKey) {
+      store.visibility[key] = false;
+    }
+  });
 };
 </script>
 
@@ -80,10 +95,10 @@ const handleSelect = (option: string) => {
   height: 32px;
   width: 32px;
   justify-content: center;
-  padding: 3px;
-  background-color: inherit;
+  padding: 4px;
+  background-color: var(--color-background-button);
   color: var(--color-text-light);
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
 }
 
@@ -98,7 +113,7 @@ const handleSelect = (option: string) => {
   right: 0;
   top: 100%;
   margin-top: -12px;
-  background: var(--color-background-button);
+  background: inherit;
   color: var(--color-text-light);
   padding: 4px 10px;
   border-radius: 6px;
@@ -150,5 +165,24 @@ const handleSelect = (option: string) => {
   text-align: left;
   overflow-wrap: anywhere;
   width: 100%;
+}
+
+.deselect-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-light);
+  background-color: inherit;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.deselect-btn:hover {
+  color: var(--color-text);
+  background-color: var(--color-background-button);
 }
 </style>
