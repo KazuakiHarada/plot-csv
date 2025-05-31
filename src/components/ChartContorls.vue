@@ -8,14 +8,14 @@
           <line x1="9" y1="4" x2="9" y2="16" stroke-width="3" stroke-linecap="round" />
         </svg>
       </button>
-      <span class="change-tooltip">ファイルをアップロード</span>
+      <span class="change-tooltip">{{$t('message.file_update')}}</span>
     </div>
     <div class="axis-container">
-      <p class="axis-label">X Axis</p>
+      <p class="axis-label">{{$t('message.x_axis')}}</p>
       <Dropdown :options="Object.keys(store.visibility)" :defaultValue="store.xKey" @update="handleSelect" />
     </div>
     <div class="axis-container">
-      <p class="axis-label">Y Axis</p>
+      <p class="axis-label">{{$t('message.y_axis')}}</p>
       <div class="item-container">
         <YAxisItem
           v-for="(_, key) in store.visibility"
@@ -30,7 +30,7 @@
             <line x1="4" y1="4" x2="14" y2="14" stroke-width="2" stroke-linecap="round" />
             <line x1="14" y1="4" x2="4" y2="14" stroke-width="2" stroke-linecap="round" />
           </svg>
-          <p>全て非表示にする</p>
+          <p>{{$t('message.hide_all')}}</p>
         </div>
       </div>
     </div>
