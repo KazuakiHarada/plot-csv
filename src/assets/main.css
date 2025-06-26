@@ -84,6 +84,8 @@ button {
   --color-background-button-hover: var(--vt-color-white-2);
   --color-background-button-disabled: var(--vt-color-white-1-w);
 
+  --color-background-hover-transparent: rgba(255, 255, 255, 0.8);
+
   --color-border: var(--vt-color-white-3);
   --color-border-button: transparent;
 
@@ -104,6 +106,8 @@ button {
       --color-background-hover: var(--vt-color-black-1-h);
       --color-background-second: var(--vt-color-black-0);
       --color-background-second-hover: var(--vt-color-white-2);
+
+      --color-background-hover-transparent: rgba(0, 0, 0, 0.7);
 
       --color-border: var(--vt-color-black-3);
       --color-border-button: #cccccc80;

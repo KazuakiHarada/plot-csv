@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import ChartCanvas from './components/ChartCanvas.vue';
-import ChartContorls from './components/ChartContorls.vue';
+import ChartCanvas from './../components/ChartCanvas.vue';
+import ChartContorls from './../components/ChartContorls.vue';
 export default {
   name: "ViewChart",
   components: {
